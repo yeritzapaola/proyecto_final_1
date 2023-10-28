@@ -1,0 +1,37 @@
+// Leer el precio original del producto
+precio_original = leer_precio_original()
+
+// Aplicar el descuento del cupón si es aplicable
+descuento_cupon = 0.1 // 10% de descuento
+precio_descuento = precio_original * (1 - descuento_cupon)
+
+// Aplicar el impuesto
+impuesto = 0.12 // 12% de impuesto
+precio_con_impuesto = precio_descuento * (1 + impuesto)
+
+// Leer la cantidad de productos
+cantidad = leer_cantidad()
+
+// Aplicar el descuento por cantidad si es aplicable
+if cantidad > 1 then
+    descuento_cantidad = 0.05 // 5% de descuento por cantidad
+    precio_con_descuento_cantidad = precio_con_impuesto * (1 - descuento_cantidad)
+else
+    precio_con_descuento_cantidad = precio_con_impuesto
+
+// Calcular el costo de envío
+costo_fijo_envio = 10
+precio_por_kg_envio = 2
+peso_paquete = leer_peso_paquete()
+costo_envio = costo_fijo_envio + (precio_por_kg_envio * peso_paquete)
+
+// Calcular el costo final del producto
+costo_final = (precio_con_descuento_cantidad * cantidad) + costo_envio
+
+// Mostrar el costo final del producto y su desglose
+mostrar "Costo final del producto:", costo_final
+mostrar "Desglose de componentes:"
+mostrar "Descuento por cupón:", precio_original - precio_descuento
+mostrar "Impuestos:", precio_descuento * impuesto
+mostrar "Descuento por cantidad:", precio_con_impuesto - precio_con_descuento_cantidad
+mostrar "Costo de envío:", costo_envio
